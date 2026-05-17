@@ -164,43 +164,56 @@ modal?.addEventListener('click', (event) => {
 });
 modal?.addEventListener('close', clearMediaModal);
 
-const audioControl = document.querySelector('.audio-control');
-const audioTitle = audioControl?.querySelector('strong');
-const audioSubtitle = audioControl?.querySelector('small');
-const journeyAudio = new Audio('./audio/main-theme.mp3');
+const journeyAudio = document.getElementById('journeyAudio');
+const journeyAudioButton = document.getElementById('journeyAudioButton');
+const journeyAudioButtonTitle = journeyAudioButton?.querySelector('strong');
 
-journeyAudio.preload = 'metadata';
-journeyAudio.volume = 0.7;
+if (journeyAudio && journeyAudioButton) {
+  console.log('Journey audio player initialized:', journeyAudio.currentSrc || journeyAudio.src);
 
-function updateJourneyButton(isPlaying) {
-  if (!audioControl) return;
+  journeyAudio.addEventListener('loadstart', () => {
+    console.log('Journey audio loading:', journeyAudio.currentSrc || journeyAudio.src);
+  });
 
-  audioControl.classList.toggle('is-playing', isPlaying);
-  audioControl.setAttribute('aria-pressed', String(isPlaying));
-  audioControl.setAttribute('aria-label', isPlaying ? 'Pause the Journey soundtrack' : 'Play the Journey soundtrack');
-  if (audioTitle) audioTitle.textContent = isPlaying ? 'Pause the Journey' : 'Play the Journey';
-  if (audioSubtitle) audioSubtitle.textContent = 'Original soundtrack';
-}
+  journeyAudio.addEventListener('canplay', () => {
+    console.log('Journey audio can play');
+  });
 
-if (audioControl) {
-  audioControl.addEventListener('click', async () => {
+  journeyAudio.addEventListener('error', () => {
+    console.error('Journey audio failed to load:', journeyAudio.error);
+  });
+
+  journeyAudioButton.addEventListener('click', async () => {
+    console.log('Journey audio button clicked');
+
     if (journeyAudio.paused) {
       try {
         await journeyAudio.play();
-        updateJourneyButton(true);
+        journeyAudioButton.classList.add('is-playing');
+        journeyAudioButton.setAttribute('aria-pressed', 'true');
+        journeyAudioButton.setAttribute('aria-label', 'Pause the Journey soundtrack');
+        if (journeyAudioButtonTitle) journeyAudioButtonTitle.textContent = 'Pause the Journey';
+        console.log('Journey audio playing');
       } catch (error) {
-        console.error('Unable to play /audio/main-theme.mp3', error);
-        updateJourneyButton(false);
+        console.error('Journey audio play failed:', error);
       }
     } else {
       journeyAudio.pause();
-      updateJourneyButton(false);
+      journeyAudioButton.classList.remove('is-playing');
+      journeyAudioButton.setAttribute('aria-pressed', 'false');
+      journeyAudioButton.setAttribute('aria-label', 'Play the Journey soundtrack');
+      if (journeyAudioButtonTitle) journeyAudioButtonTitle.textContent = 'Play the Journey';
+      console.log('Journey audio paused');
     }
   });
 
-  journeyAudio.addEventListener('ended', () => updateJourneyButton(false));
-  journeyAudio.addEventListener('error', (error) => {
-    console.error('Unable to load /audio/main-theme.mp3', error);
-    updateJourneyButton(false);
+  journeyAudio.addEventListener('ended', () => {
+    journeyAudioButton.classList.remove('is-playing');
+    journeyAudioButton.setAttribute('aria-pressed', 'false');
+    journeyAudioButton.setAttribute('aria-label', 'Play the Journey soundtrack');
+    if (journeyAudioButtonTitle) journeyAudioButtonTitle.textContent = 'Play the Journey';
+    console.log('Journey audio ended');
   });
+} else {
+  console.error('Journey audio button or audio element was not found');
 }

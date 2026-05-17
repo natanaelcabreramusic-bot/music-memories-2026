@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <button class="audio-control" type="button" aria-label="Play the Journey soundtrack" aria-pressed="false">
+  <audio id="journeyAudio" src="audio/main-theme.mp3" preload="auto"></audio>
+
+  <button id="journeyAudioButton" class="audio-control" type="button" aria-label="Play the Journey soundtrack" aria-pressed="false">
     <span class="audio-orb" aria-hidden="true">
       <span></span><span></span><span></span>
     </span>
