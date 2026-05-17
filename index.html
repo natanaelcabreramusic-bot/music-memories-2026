@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Journey Behind the Performance — a private cinematic year-end music documentary experience by Natanael Cabrera Music." />
+  <title>The Journey Behind the Performance | Natanael Cabrera Music</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <audio id="journey-audio" src="./audio/main-theme.wav" preload="metadata"></audio>
+
+  <button class="audio-control" type="button" aria-label="Play the Journey soundtrack" aria-pressed="false">
+    <span class="audio-orb" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+    <span class="audio-text">
+      <strong>Play the Journey</strong>
+      <small>Original soundtrack</small>
+    </span>
+  </button>
+  <header class="site-header" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="Mr. C Music Documentary home">
+      <img class="brand-logo" src="assets/mrc-logo.png" alt="Mr. C" />
+      <span class="brand-copy">
+        <small>Portfolio</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Toggle navigation</span>
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      <a href="#film">Film</a>
+      <a href="#scenes">Scenes</a>
+      <a href="#classroom">Classroom</a>
+      <a href="#grandparents-day">Grandparents</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#memories">Memories</a>
+      <a href="#thank-you">Thank You</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-photo" src="./hero/hero-memory.jpg" alt="Students performing together on stage during a year-end music moment" data-parallax data-speed="0.06" />
+      <!-- Optional: add a hero background MP4 source here when ready. -->
+      <video class="hero-video" autoplay muted loop playsinline poster="./hero/hero-memory.jpg" aria-label="Background video placeholder"></video>
+      <div class="film-grain" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content reveal">
+        <h1 id="hero-title">Every performance tells a story.</h1>
+      </div>
+
+      <div class="scroll-cue" aria-label="Scroll down to continue">
+        <small>Scroll Down</small>
+        <span></span>
+      </div>
+    </section>
+
+    <section class="section intro" aria-labelledby="intro-title">
+      <div class="container intro-grid intro-title-only">
+        <h2 id="intro-title">Beautiful childhood memories through music and worship</h2>
+        <div class="intro-credits reveal" aria-label="Creative credits">
+          <p class="intro-credits-title">Created With Heart</p>
+          <p><span>Music, Direction &amp; Production</span> <strong>Natanael Cabrera</strong></p>
+          <p><span>Visual Design &amp; Stage Styling</span> <strong>Gina Cabrera</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-break image-break-first" aria-label="Cinematic memory transition">
+      <img src="./behind-the-scenes/backstage-01.jpg" alt="A warm behind-the-scenes music moment" data-parallax data-speed="0.12" />
+      <div class="image-break-caption reveal">
+        <span>Before the applause</span>
+        <h2>The quiet moments shaped the music.</h2>
+      </div>
+    </section>
+
+    <section id="film" class="section featured-film" aria-labelledby="film-title">
+      <div class="container">
+        <div class="section-heading center">
+          <h2 id="film-title">The Journey Behind the Performance</h2>
+        </div>
+
+        <div class="cinema-frame">
+          <video class="featured-preview" autoplay muted loop playsinline preload="auto" poster="featured-film/film-poster.jpg" aria-label="Muted cinematic preview of The Journey Behind the Performance">
+            <source src="featured-film/journey-film.mp4" type="video/mp4" />
+          </video>
+          <div class="frame-glow" aria-hidden="true"></div>
+          <button class="play-card" type="button" aria-label="Open featured documentary film" data-modal-title="The Journey Behind the Performance" data-modal-type="video" data-modal-src="featured-film/journey-film.mp4">
+            <span class="play-icon"></span>
+            <span>
+              <strong>Watch the Journey</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenes" class="section scenes-section" aria-labelledby="scenes-title">
+      <div class="container">
+        <div class="section-heading center narrow">
+          <h2 id="scenes-title">Scenes from the story behind the songs.</h2>
+        </div>
+      </div>
+
+      <div class="story-reel" aria-label="Cinematic documentary scenes"></div>
+    </section>
+
+    <section id="classroom" class="section classroom-rehearsals" aria-labelledby="classroom-title">
+      <div class="container">
+        <div class="section-heading center narrow">
+          <h2 id="classroom-title">Inside the Classroom</h2>
+          <p>Small moments of learning, rhythm, coordination, and growth.</p>
+        </div>
+
+        <div class="classroom-video-grid" aria-label="Short classroom rehearsal moments">
+          <article class="classroom-video-card reveal" data-modal-title="Rhythm &amp; Coordination" data-modal-type="video" data-modal-src="./videos/classroom/classroom-1.mp4">
+            <div class="classroom-video-frame">
+              <video muted loop playsinline preload="metadata" aria-label="Short classroom rehearsal video showing rhythm and coordination">
+                <source src="./videos/classroom/classroom-1.mp4" type="video/mp4" />
+              </video>
+              <span class="classroom-play" aria-hidden="true"></span>
+            </div>
+            <h3>Rhythm &amp; Coordination</h3>
+          </article>
+
+          <article class="classroom-video-card reveal" data-modal-title="Learning Through Music" data-modal-type="video" data-modal-src="./videos/classroom/classroom-2.mp4">
+            <div class="classroom-video-frame">
+              <video muted loop playsinline preload="metadata" aria-label="Short classroom rehearsal video showing students learning through music">
+                <source src="./videos/classroom/classroom-2.mp4" type="video/mp4" />
+              </video>
+              <span class="classroom-play" aria-hidden="true"></span>
+            </div>
+            <h3>Learning Through Music</h3>
+          </article>
+
+          <article class="classroom-video-card reveal" data-modal-title="Moments Behind the Music" data-modal-type="video" data-modal-src="./videos/classroom/classroom-3.mp4">
+            <div class="classroom-video-frame">
+              <video muted loop playsinline preload="metadata" aria-label="Short classroom rehearsal video showing moments behind the music">
+                <source src="./videos/classroom/classroom-3.mp4" type="video/mp4" />
+              </video>
+              <span class="classroom-play" aria-hidden="true"></span>
+            </div>
+            <h3>Moments Behind the Music</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section layered-memory" aria-labelledby="layered-title">
+      <div class="container layered-grid">
+        <figure class="layer-photo layer-main reveal" data-modal-title="Classroom Creativity" data-modal-type="photo" data-modal-src="./photos/creativity-01.jpg">
+          <img src="./photos/creativity-01.jpg" alt="Students sharing a creative music memory" loading="lazy" />
+        </figure>
+        <figure class="layer-photo layer-small reveal" data-modal-title="Quiet Music Moment" data-modal-type="photo" data-modal-src="./photos/quiet-moment.jpg">
+          <img src="./photos/quiet-moment.jpg" alt="A quiet student music memory" loading="lazy" />
+        </figure>
+        <div class="layer-copy reveal">
+          <h2 id="layered-title">Every image should feel like a memory coming back.</h2>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="grandparents-day" class="section grandparents-day" aria-labelledby="grandparents-title">
+      <div class="grandparents-light" aria-hidden="true"></div>
+      <div class="container grandparents-grid">
+        <div class="grandparents-copy reveal">
+          <h2 id="grandparents-title">Generations of Joy</h2>
+        </div>
+
+        <div class="grandparents-photo-stage">
+          <button class="grandparents-photo grandparents-main reveal" type="button" data-modal-title="Generations of Joy" data-modal-type="photo" data-modal-src="./grandparents-day/grandparents-hero.jpg">
+            <img src="./grandparents-day/grandparents-hero.jpg" alt="Warm Grandparents Day memory" loading="lazy" />
+            <span>Family, joy, and music</span>
+          </button>
+          <button class="grandparents-photo grandparents-detail one reveal" type="button" data-modal-title="Moments Across Generations" data-modal-type="photo" data-modal-src="./grandparents-day/generations-detail.jpg">
+            <img src="./grandparents-day/generations-detail.jpg" alt="Nostalgic family connection memory" loading="lazy" />
+          </button>
+          <button class="grandparents-photo grandparents-detail two reveal" type="button" data-modal-title="Childhood Memories" data-modal-type="photo" data-modal-src="./grandparents-day/joy-detail.jpg">
+            <img src="./grandparents-day/joy-detail.jpg" alt="Joyful childhood music memory" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="section timeline-section" aria-labelledby="timeline-title">
+      <div class="container">
+        <div class="section-heading center narrow">
+          <h2 id="timeline-title">A year told like chapters in a film.</h2>
+        </div>
+
+        <div class="timeline cinematic-timeline">
+          <article class="timeline-item reveal" data-modal-title="Beginning of the Year" data-modal-type="photo" data-modal-src="./photos/timeline-beginning.jpg">
+            <img src="./photos/timeline-beginning.jpg" alt="Beginning of the year music memory" loading="lazy" />
+            <div><span>Chapter I</span><h3>Beginning of the Year</h3></div>
+          </article>
+          <article class="timeline-item reveal" data-modal-title="Performing Together" data-modal-type="photo" data-modal-src="./photos/timeline-learning.jpg">
+            <img src="./photos/timeline-learning.jpg" alt="Students learning together through music" loading="lazy" />
+            <div><span>Chapter II</span><h3>Performing Together</h3></div>
+          </article>
+          <article class="timeline-item reveal" data-modal-title="Veterans Day" data-modal-type="photo" data-modal-src="./veterans-day/veterans-01.jpg">
+            <img src="./veterans-day/veterans-01.jpg" alt="Veterans Day music memory" loading="lazy" />
+            <div><span>Chapter III</span><h3>Veterans Day</h3></div>
+          </article>
+          <article class="timeline-item reveal" data-modal-title="Christmas Program" data-modal-type="photo" data-modal-src="./christmas/christmas-01.jpg">
+            <img src="./christmas/christmas-01.jpg" alt="Christmas program memory" loading="lazy" />
+            <div><span>Chapter IV</span><h3>Christmas Program</h3></div>
+          </article>
+          <article class="timeline-item reveal" data-modal-title="Grandparents Day" data-modal-type="photo" data-modal-src="./worship/worship-01.jpg">
+            <img src="./worship/worship-01.jpg" alt="Worship arts music memory" loading="lazy" />
+            <div><span>Chapter V</span><h3>Grandparents Day</h3></div>
+          </article>
+          <article class="timeline-item reveal" data-modal-title="Choir" data-modal-type="photo" data-modal-src="./concerts/final-celebration.jpg">
+            <img src="./concerts/final-celebration.jpg" alt="Final celebration performance memory" loading="lazy" />
+            <div><span>Chapter VI</span><h3>Choir</h3></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="image-break image-break-second" aria-label="Fullscreen concert memory">
+      <img src="./concerts/concert-02.jpg" alt="A cinematic wide concert memory" data-parallax data-speed="0.1" loading="lazy" />
+      <div class="image-break-caption reveal">
+        <span>After months of preparation</span>
+        <h2>The stage became a place of courage.</h2>
+      </div>
+    </section>
+
+    <section id="memories" class="section memories" aria-labelledby="memories-title">
+      <div class="container">
+        <div class="section-heading center narrow">
+          <h2 id="memories-title">The moments behind the music</h2>
+        </div>
+
+        <div class="memory-wall">
+          <button class="memory-card wide reveal" data-modal-title="Concerts" data-modal-type="photo" data-modal-src="./concerts/concert-01.jpg"><img src="./concerts/concert-01.jpg" alt="Concert memory" loading="lazy" /><span>Concerts</span></button>
+          <button class="memory-card portrait reveal" data-modal-title="Rehearsal Clips" data-modal-type="photo" data-modal-src="./rehearsals/rehearsal-01.jpg"><img src="./rehearsals/rehearsal-01.jpg" alt="Rehearsal memory" loading="lazy" /><span>Rehearsals</span></button>
+          <button class="memory-card small reveal" data-modal-title="Funny Moments" data-modal-type="photo" data-modal-src="./funny-moments/funny-01.jpg"><img src="./funny-moments/funny-01.jpg" alt="Funny behind-the-scenes memory" loading="lazy" /><span>Funny Moments</span></button>
+          <button class="memory-card tall reveal" data-modal-title="Behind the Scenes" data-modal-type="video" data-modal-src="./behind-the-scenes/behind-the-scenes.mp4"><video autoplay muted loop playsinline preload="metadata" aria-label="Behind the Scenes short vertical video"><source src="./behind-the-scenes/behind-the-scenes.mp4" type="video/mp4" /></video><span>Behind the Scenes</span></button>
+          <button class="memory-card medium reveal" data-modal-title="Musical Memories" data-modal-type="photo" data-modal-src="./photos/music-memory.jpg"><img src="./photos/music-memory.jpg" alt="Warm music memory" loading="lazy" /><span>Musical Memories</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="thank-you" class="thank-you" aria-labelledby="thank-title">
+      <div class="thank-image" aria-hidden="true" data-parallax data-speed="0.08"></div>
+      <div class="thank-panel reveal">
+        <h2 id="thank-title">Thank you for trusting the journey.</h2>
+      </div>
+    </section>
+  </main>
+
+
+  <dialog class="media-modal" aria-label="Media viewer">
+    <button class="modal-close" type="button" aria-label="Close viewer">×</button>
+    <div class="modal-content"></div>
+    <p class="modal-title"></p>
+  </dialog>
+
+  <script src="./script.js"></script>
+</body>
+</html>
