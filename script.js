@@ -119,31 +119,6 @@ if (featuredPreview) {
   });
 }
 
-const classroomCards = document.querySelectorAll('.classroom-video-card');
-
-classroomCards.forEach((card) => {
-  const video = card.querySelector('video');
-  if (!video) return;
-
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
-
-  const playPreview = () => {
-    const playAttempt = video.play();
-    if (playAttempt?.catch) playAttempt.catch(() => {});
-  };
-
-  const pausePreview = () => {
-    video.pause();
-    if (Number.isFinite(video.duration)) video.currentTime = 0;
-  };
-
-  card.addEventListener('mouseenter', playPreview);
-  card.addEventListener('focusin', playPreview);
-  card.addEventListener('mouseleave', pausePreview);
-  card.addEventListener('focusout', pausePreview);
-});
 
 const modal = document.querySelector('.media-modal');
 const modalContent = document.querySelector('.modal-content');
@@ -193,62 +168,37 @@ const journeyAudio = document.querySelector('#journey-audio');
 const audioControl = document.querySelector('.audio-control');
 const audioTitle = audioControl?.querySelector('strong');
 const audioSubtitle = audioControl?.querySelector('small');
-let fadeFrame;
 
-function fadeAudio(targetVolume, afterFade) {
-  if (!journeyAudio) return;
-  window.cancelAnimationFrame(fadeFrame);
+function setAudioButtonState(isPlaying) {
+  if (!audioControl) return;
 
-  const startVolume = journeyAudio.volume;
-  const duration = 950;
-  const startedAt = performance.now();
-
-  function step(now) {
-    const progress = Math.min((now - startedAt) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    journeyAudio.volume = startVolume + (targetVolume - startVolume) * eased;
-
-    if (progress < 1) {
-      fadeFrame = window.requestAnimationFrame(step);
-    } else if (afterFade) {
-      afterFade();
-    }
-  }
-
-  fadeFrame = window.requestAnimationFrame(step);
+  audioControl.classList.toggle('is-playing', isPlaying);
+  audioControl.setAttribute('aria-pressed', String(isPlaying));
+  audioControl.setAttribute('aria-label', isPlaying ? 'Pause the Journey soundtrack' : 'Play the Journey soundtrack');
+  if (audioTitle) audioTitle.textContent = isPlaying ? 'Pause the Journey' : 'Play the Journey';
+  if (audioSubtitle) audioSubtitle.textContent = 'Original soundtrack';
 }
 
 if (journeyAudio && audioControl) {
-  journeyAudio.volume = 0;
+  journeyAudio.src = './audio/main-theme.mp3';
+  journeyAudio.preload = 'metadata';
+  journeyAudio.volume = 0.82;
 
   audioControl.addEventListener('click', async () => {
     if (journeyAudio.paused) {
       try {
-        journeyAudio.volume = 0;
         await journeyAudio.play();
-        audioControl.classList.add('is-playing');
-        audioControl.setAttribute('aria-pressed', 'true');
-        audioControl.setAttribute('aria-label', 'Pause the Journey soundtrack');
-        if (audioTitle) audioTitle.textContent = 'Pause the Journey';
-        if (audioSubtitle) audioSubtitle.textContent = 'Soundtrack playing';
-        fadeAudio(0.82);
+        setAudioButtonState(true);
       } catch (error) {
-        if (audioSubtitle) audioSubtitle.textContent = 'Tap again to enable audio';
+        setAudioButtonState(false);
       }
     } else {
-      audioControl.classList.remove('is-playing');
-      audioControl.setAttribute('aria-pressed', 'false');
-      audioControl.setAttribute('aria-label', 'Play the Journey soundtrack');
-      if (audioTitle) audioTitle.textContent = 'Play the Journey';
-      if (audioSubtitle) audioSubtitle.textContent = 'Original soundtrack';
-      fadeAudio(0, () => journeyAudio.pause());
+      journeyAudio.pause();
+      setAudioButtonState(false);
     }
   });
 
-  journeyAudio.addEventListener('ended', () => {
-    audioControl.classList.remove('is-playing');
-    audioControl.setAttribute('aria-pressed', 'false');
-    if (audioTitle) audioTitle.textContent = 'Play the Journey';
-    if (audioSubtitle) audioSubtitle.textContent = 'Original soundtrack';
-  });
+  journeyAudio.addEventListener('pause', () => setAudioButtonState(false));
+  journeyAudio.addEventListener('ended', () => setAudioButtonState(false));
+  journeyAudio.addEventListener('play', () => setAudioButtonState(true));
 }
