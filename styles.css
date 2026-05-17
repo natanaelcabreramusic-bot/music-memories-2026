@@ -631,3 +631,13 @@ p { color: var(--muted); margin: 0; }
   }
   .grandparents-detail { border-width: 0; }
 }
+
+@media (max-width: 900px) {
+  .memory-card.portrait img {
+    object-position: center top;
+  }
+
+  .memory-card.small img {
+    object-position: center center;
+  }
+}
