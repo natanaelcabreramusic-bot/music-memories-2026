@@ -164,12 +164,15 @@ modal?.addEventListener('click', (event) => {
 });
 modal?.addEventListener('close', clearMediaModal);
 
-const journeyAudio = document.querySelector('#journey-audio');
 const audioControl = document.querySelector('.audio-control');
 const audioTitle = audioControl?.querySelector('strong');
 const audioSubtitle = audioControl?.querySelector('small');
+const journeyAudio = new Audio('./audio/main-theme.mp3');
 
-function setAudioButtonState(isPlaying) {
+journeyAudio.preload = 'metadata';
+journeyAudio.volume = 0.7;
+
+function updateJourneyButton(isPlaying) {
   if (!audioControl) return;
 
   audioControl.classList.toggle('is-playing', isPlaying);
@@ -179,26 +182,25 @@ function setAudioButtonState(isPlaying) {
   if (audioSubtitle) audioSubtitle.textContent = 'Original soundtrack';
 }
 
-if (journeyAudio && audioControl) {
-  journeyAudio.src = './audio/main-theme.mp3';
-  journeyAudio.preload = 'metadata';
-  journeyAudio.volume = 0.82;
-
+if (audioControl) {
   audioControl.addEventListener('click', async () => {
     if (journeyAudio.paused) {
       try {
         await journeyAudio.play();
-        setAudioButtonState(true);
+        updateJourneyButton(true);
       } catch (error) {
-        setAudioButtonState(false);
+        console.error('Unable to play /audio/main-theme.mp3', error);
+        updateJourneyButton(false);
       }
     } else {
       journeyAudio.pause();
-      setAudioButtonState(false);
+      updateJourneyButton(false);
     }
   });
 
-  journeyAudio.addEventListener('pause', () => setAudioButtonState(false));
-  journeyAudio.addEventListener('ended', () => setAudioButtonState(false));
-  journeyAudio.addEventListener('play', () => setAudioButtonState(true));
+  journeyAudio.addEventListener('ended', () => updateJourneyButton(false));
+  journeyAudio.addEventListener('error', (error) => {
+    console.error('Unable to load /audio/main-theme.mp3', error);
+    updateJourneyButton(false);
+  });
 }
