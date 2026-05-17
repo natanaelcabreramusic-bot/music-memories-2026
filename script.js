@@ -137,7 +137,7 @@ function openMediaModal(trigger) {
   if (!src) {
     modalContent.innerHTML = `<div class="placeholder">Media placeholder for ${title}</div>`;
   } else if (type === 'video') {
-    modalContent.innerHTML = `<video src="${src}" poster="featured-film/film-poster.jpg" controls autoplay playsinline></video>`;
+    modalContent.innerHTML = `<video src="${src}" controls autoplay playsinline></video>`;
   } else {
     modalContent.innerHTML = `<img src="${src}" alt="${title}" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'placeholder', textContent: 'Add media file: ${src}' }))" />`;
   }
